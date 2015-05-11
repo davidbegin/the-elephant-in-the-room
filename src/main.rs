@@ -16,6 +16,13 @@ fn main() {
         }
     };
 
+    conn.execute("create table if not exists blog (
+        id serial primary key,
+        title varchar(255),
+        body text)", &[]).ok().expect("Table creation failed");
 
     println!("{:?}", conn);
+
+    conn.execute("drop table blog", &[])
+        .ok().expect("Table creation failed");
 }
